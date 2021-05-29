@@ -5,7 +5,7 @@
             <Icon :type="arrowType" :custom="customArrowType" :size="arrowSize" :class="[prefixCls + '-submenu-title-icon']" />
         </div>
         <collapse-transition v-if="mode === 'vertical'">
-            <ul :class="[prefixCls]" v-show="opened"><slot></slot></ul>
+            <ul :class="[prefixCls]" v-show="opened||disableCollapse"><slot></slot></ul>
         </collapse-transition>
         <transition name="slide-up" v-else>
             <Drop
@@ -39,6 +39,10 @@
             disabled: {
                 type: Boolean,
                 default: false
+            },
+            disableCollapse: {
+                type: Boolean,
+                default: false
             }
         },
         data () {
@@ -56,7 +60,7 @@
                     {
                         [`${prefixCls}-item-active`]: this.active && !this.hasParentSubmenu,
                         [`${prefixCls}-opened`]: this.opened,
-                        [`${prefixCls}-submenu-disabled`]: this.disabled,
+                        [`${prefixCls}-submenu-disabled`]: this.disabled||this.disableCollapse,
                         [`${prefixCls}-submenu-has-parent-submenu`]: this.hasParentSubmenu,
                         [`${prefixCls}-child-item-active`]: this.active
                     }
@@ -114,7 +118,7 @@
         },
         methods: {
             handleMouseenter () {
-                if (this.disabled) return;
+                if (this.disabled||this.disableCollapse) return;
                 if (this.mode === 'vertical') return;
 
                 clearTimeout(this.timeout);
@@ -124,7 +128,7 @@
                 }, 250);
             },
             handleMouseleave () {
-                if (this.disabled) return;
+                if (this.disabled||this.disableCollapse) return;
                 if (this.mode === 'vertical') return;
 
                 clearTimeout(this.timeout);
@@ -134,7 +138,7 @@
                 }, 150);
             },
             handleClick () {
-                if (this.disabled) return;
+                if (this.disabled||this.disableCollapse) return;
                 if (this.mode === 'horizontal') return;
                 const opened = this.opened;
                 if (this.accordion) {
