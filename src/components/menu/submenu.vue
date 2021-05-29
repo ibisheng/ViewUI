@@ -2,7 +2,7 @@
     <li :class="classes" @mouseenter="handleMouseenter" @mouseleave="handleMouseleave">
         <div :class="[prefixCls + '-submenu-title']" ref="reference" @click.stop="handleClick" :style="titleStyle">
             <slot name="title"></slot>
-            <Icon :type="arrowType" :custom="customArrowType" :size="arrowSize" :class="[prefixCls + '-submenu-title-icon']" />
+            <Icon :type="arrowType" :custom="customArrowType" :size="arrowSize" :class="[prefixCls + '-submenu-title-icon']" v-if="!disableCollapse" />
         </div>
         <collapse-transition v-if="mode === 'vertical'">
             <ul :class="[prefixCls]" v-show="opened||disableCollapse"><slot></slot></ul>
