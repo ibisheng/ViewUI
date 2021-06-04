@@ -24,7 +24,7 @@
                 @focus="onFocus"
                 @blur="onBlur">
         </span>
-        <slot><span v-if="showSlot">{{ label }}</span></slot>
+        <slot><span v-if="showSlot&&!disableTitle">{{ label }}</span></slot>
     </label>
 </template>
 <script>
@@ -42,6 +42,10 @@
                 type: Boolean,
                 default: false
             },
+          disableTitle:{
+            type: Boolean,
+            default: false
+          },
             value: {
                 type: [String, Number, Boolean],
                 default: false
