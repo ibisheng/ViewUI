@@ -24,7 +24,7 @@
                 @focus="onFocus"
                 @blur="onBlur">
         </span>
-        <slot><span v-if="showSlot&&!disableTitle">艹你吗</span></slot>
+        <slot><span v-if="showSlot">{{label}}</span></slot>
     </label>
 </template>
 <script>
@@ -42,10 +42,6 @@
                 type: Boolean,
                 default: false
             },
-          disableTitle:{
-            type: Boolean,
-            default: false
-          },
             value: {
                 type: [String, Number, Boolean],
                 default: false
@@ -87,7 +83,7 @@
                 model: [],
                 currentValue: this.value,
                 group: false,
-                showSlot: false,
+                showSlot: true,
                 parent: findComponentUpward(this, 'CheckboxGroup'),
                 focusInner: false
             };
