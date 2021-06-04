@@ -83,7 +83,7 @@
                 model: [],
                 currentValue: this.value,
                 group: false,
-                showSlot: true,
+                showSlot: false,
                 parent: findComponentUpward(this, 'CheckboxGroup'),
                 focusInner: false
             };
