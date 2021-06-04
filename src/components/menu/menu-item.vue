@@ -30,6 +30,10 @@
                 type: Boolean,
                 default: false
             },
+            startsWith:{
+                type: Boolean,
+                default: false
+            }
         },
         data () {
             return {
@@ -77,7 +81,7 @@
         },
         mounted () {
             this.$on('on-update-active-name', (name) => {
-                if (this.name === name) {
+                if (this.name === name || this.startsWith&&name.startsWith(this.name)) {
                     this.active = true;
                     this.dispatch('Submenu', 'on-update-active-name', name);
                 } else {
