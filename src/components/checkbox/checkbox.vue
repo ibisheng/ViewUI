@@ -24,7 +24,7 @@
                 @focus="onFocus"
                 @blur="onBlur">
         </span>
-        <slot><span v-if="showSlot&&!disableTitle">{{ label }}</span></slot>
+<!--        <slot><span v-if="showSlot&&!disableTitle">{{ label }}</span></slot>-->
     </label>
 </template>
 <script>
